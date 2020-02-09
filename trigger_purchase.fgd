@@ -1,0 +1,14 @@
+@PointClass base(Targetname, Target) color(220 30 220) = trigger_purchase : "Trigger Payload Movement Mode"
+[
+  targetname(target_source) : "Name"
+  target(target_destination) : "Target (Success)"
+  i_targetLater(target_destination) : "Target (Later)" : ""
+  i_targetCommandError(target_destination) : "Target (Command Error)" : ""
+  i_targetLowScore(target_destination) : "Target (Not Enough Score)" : ""
+  m_echoCommand(string) : "Echo command to execute immediately" : ""
+  m_echoCommandDelayed(string) : "Echo command to execute later" : ""
+  m_echoCommandError(string) : "Echo command to execute on error" : ""
+  m_echoCommandLowScore : "Echo command to execute on not enough score" : ""
+  m_echoCommandTime(float) : "Interval for later command (second)" : -1
+  m_cost(float) : "Score to cost" : 0
+]

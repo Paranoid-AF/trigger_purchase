@@ -59,6 +59,7 @@ namespace Entity{
                 g_Scheduler.SetInterval(@this, "TaskLater", m_echoCommandTime, 1, @pPlayer);
               }
           }else{
+            pPlayer.pev.frags += m_cost;
             // Command error
             UseTarget(i_targetCommandError, pPlayer);
             Run(m_echoCommandError, pPlayer);

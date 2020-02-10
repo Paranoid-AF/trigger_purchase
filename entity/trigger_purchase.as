@@ -50,24 +50,23 @@ namespace Entity{
     void Use(CBaseEntity@ pActivator, CBaseEntity@ pCaller, USE_TYPE useType, float value)
     {
       CBasePlayer@ pPlayer = cast<CBasePlayer@>(pActivator);
-
       if(!isspace(m_echoCommand) && m_echoCommand != ""){
-        if(Run(m_echoCommand, pPlayer)){
-          if(DeductScore(m_cost, pPlayer)){
-            // Command successful
-            UseTarget(pev.target, pPlayer);
-            if(m_echoCommandTime >= 0){
-              g_Scheduler.SetInterval(@this, "TaskLater", m_echoCommandTime, 1, @pPlayer);
-            }
+        if(DeductScore(m_cost, pPlayer)){
+          if(Run(m_echoCommand, pPlayer)){
+              // Command successful
+              UseTarget(pev.target, pPlayer);
+              if(m_echoCommandTime >= 0){
+                g_Scheduler.SetInterval(@this, "TaskLater", m_echoCommandTime, 1, @pPlayer);
+              }
           }else{
-            // Command failed for not enough score
-            UseTarget(i_targetLowScore, pPlayer);
-            Run(m_echoCommandLowScore, pPlayer);
+            // Command error
+            UseTarget(i_targetCommandError, pPlayer);
+            Run(m_echoCommandError, pPlayer);
           }
         }else{
-          // Command error
-          UseTarget(i_targetCommandError, pPlayer);
-          Run(m_echoCommandError, pPlayer);
+          // Command failed for not enough score
+          UseTarget(i_targetLowScore, pPlayer);
+          Run(m_echoCommandLowScore, pPlayer);
         }
       }
     }
